@@ -3,7 +3,6 @@ package com.example.transaction_service.controller;
 import com.example.transaction_service.dto.request.PayInstallmentRequestDTO;
 import com.example.transaction_service.dto.request.TransactionRequestDTO;
 import com.example.transaction_service.dto.response.TransactionResponseDTO;
-import com.example.transaction_service.entity.Transaction;
 import com.example.transaction_service.service.TransactionService;
 import com.example.transaction_service.util.ApiResponse;
 import jakarta.validation.Valid;
@@ -29,7 +28,7 @@ public class TransactionController {
     }
 
     @PostMapping("/transactions/installments/pay")
-    public ResponseEntity<?> payInstallment(@Valid @RequestBody final PayInstallmentRequestDTO payInstallmentRequestDTO) {
+    public void payInstallment(@Valid @RequestBody final PayInstallmentRequestDTO payInstallmentRequestDTO) {
         transactionService.payInstallmentByNumber(payInstallmentRequestDTO);
 
         ApiResponse<Void> response = new ApiResponse<>(
@@ -37,6 +36,6 @@ public class TransactionController {
                 null
         );
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
