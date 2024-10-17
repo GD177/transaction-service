@@ -1,0 +1,21 @@
+<configuration>
+    <!-- Define the pattern for the log output -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+
+    <!-- Define where to store the logs (a .txt file) -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/error-log.txt</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Define logging levels -->
+    <logger name="org.springframework" level="INFO" />
+    <logger name="com.example" level="DEBUG" />
+
+    <!-- Root logger (all uncaught errors) -->
+    <root level="ERROR">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
